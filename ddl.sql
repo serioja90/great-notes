@@ -1,0 +1,28 @@
+CREATE SCHEMA admin;
+CREATE SCHEMA notes;
+CREATE SCHEMA log;
+
+CREATE TABLE admin.roles(
+	id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+	role VARCHAR UNIQUE NOT NULL
+);
+
+CREATE TABLE admin.permitions(
+	id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+	permission VARCHAR UNIQUE NOT NULL
+);
+
+CREATE TABLE admin.role_permitions(
+	role_id INTEGER NOT NULL,
+	permission_id INTEGER NOT NULL,
+	PRIMARY KEY (role_id,permission_id)
+);
+
+CREATE TABLE admin.users(
+	id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+	email VARCHAR UNIQUE NOT NULL,
+	username VARCHAR(30) UNIQUE NOT NULL,
+	password VARCHAR(20),
+	role_id INTEGER NOT NULL,
+	FOREIGN KEY (role_id) REFERENCES admin.roles(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
