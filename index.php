@@ -1,4 +1,7 @@
 <?php
+	session_start();
+	$_SESSION['errors'] = array();
+	$_SESSION['notice'] = array();
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
 	register_shutdown_function(function() {
@@ -17,24 +20,26 @@
 	foreach(glob("app/controllers/*.php") as $file){
     	require_once($file);
 	}
+
 	foreach(glob("app/models/*.php") as $file){
     	require_once($file);
 	}
 	$parser = new URLParser(BASE_URI);
+	$_SESSION['parser'] = $parser;
 	if($parser->getController()==''){
-		define('CONTROLLER',ucfirst(DEFAULT_CONTROLLER).'Controller');
-		define('ACTION','index');
+		$_SESSION['controller'] = DEFAULT_CONTROLLER;
+		$_SESSION['action'] = 'index';
 	}else{
-		define('CONTROLLER',ucfirst($parser->getController()).'Controller');
+		$_SESSION['controller'] = $parser->getController();
 		if($parser->getAction()==''){
-			define('ACTION','index');
+			$_SESSION['action'] = 'index';
 		}else{
-			define('ACTION',$parser->getAction());
+			$_SESSION['action'] = $parser->getAction();
 		}
 	}
-	if(class_exists(CONTROLLER)){
-		$classname = CONTROLLER;
-		$methodname = ACTION;
+	if(class_exists(ucfirst($_SESSION['controller']).'Controller')){
+		$classname = ucfirst($_SESSION['controller']).'Controller';
+		$methodname = $_SESSION['action'];
 		$controller = new $classname();
 		if(method_exists($controller, $methodname)){
 			$controller->$methodname();

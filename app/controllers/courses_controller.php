@@ -1,8 +1,8 @@
 <?php
-	class NotesController extends ApplicationController{
+	class CoursesController extends ApplicationController{
 		public function index(){
-			$notes = Note::find();
+			$courses = Course::find();
 			$this->render(array('locals' => get_defined_vars()));
 		}
 	}
-?>
+?>	

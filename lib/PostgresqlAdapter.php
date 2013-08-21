@@ -41,13 +41,18 @@
 			if(isset($params['lock']) && $params['lock']){
 				$query .= " FOR UPDATE";
 			}
-			pg_prepare($this->connection,"",$query);
-			$result = pg_execute($this->connection,"",$params['params']);
-			return pg_fetch_all($result);
+			pg_prepare($this->connection,null,$query);
+			$result = pg_execute($this->connection,null,$params['params']);
+			$records = pg_fetch_all($result);
+			if (!$records){
+				return array();
+			}else{
+				return $records;
+			}
 		}
 
 		public function find_by_sql($params){}
 		public function execute($params){}
 	}
 
-?>
+?>	
