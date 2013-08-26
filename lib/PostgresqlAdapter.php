@@ -51,8 +51,20 @@
 			}
 		}
 
-		public function find_by_sql($params){}
-		public function execute($params){}
+		public function find_by_sql($params){
+			$query = $params[0];
+			pg_prepare($this->connection,null,$query);
+			$result = pg_execute($this->connection,null,array_slice($params,1));
+			$records = pg_fetch_all($result);
+			if (!$records){
+				return array();
+			}else{
+				return $records;
+			}
+		}
+		public function execute($params){
+			
+		}
 	}
 
 ?>	

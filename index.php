@@ -1,12 +1,15 @@
 <?php
 	session_start();
-	$_SESSION['errors'] = array();
-	$_SESSION['notice'] = array();
+	if(!isset($_SESSION['errors'])){
+		$_SESSION['errors'] = array();
+	}
+	if(!isset($_SESSION['notice'])){
+		$_SESSION['notice'] = array();
+	}
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
 	register_shutdown_function(function() {
 	    $lastError = error_get_last();
-
 	    if (!empty($lastError) && $lastError['type'] == E_ERROR) {
 	        header('Status: 500 Internal Server Error');
 	        header('HTTP/1.0 500 Internal Server Error');
@@ -17,6 +20,11 @@
 	foreach(glob("lib/*.php") as $file){
     	require_once($file);
 	}
+    
+    foreach (glob("app/helpers/*.php") as $file) {
+    	require_once($file);
+    }
+
 	foreach(glob("app/controllers/*.php") as $file){
     	require_once($file);
 	}
@@ -24,6 +32,7 @@
 	foreach(glob("app/models/*.php") as $file){
     	require_once($file);
 	}
+
 	$parser = new URLParser(BASE_URI);
 	$_SESSION['parser'] = $parser;
 	if($parser->getController()==''){

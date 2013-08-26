@@ -43,7 +43,7 @@
 		}
 
 		public function find_by_sql($params){
-			$this->adapter->find_by_sql($params);
+			return $this->adapter->find_by_sql($params);
 		}
 
 		public function execute($params){

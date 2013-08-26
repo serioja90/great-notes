@@ -1,21 +1,26 @@
-<?php if(!empty($_SESSION['errors'])){ ?>
+<?php if(!errors_empty()){ ?>
 	<div class="alert alert-danger alert-dismissable">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		<?php 
-			foreach($_SESSION['errors'] as $msg){
+			foreach(get_errors() as $msg){
 				echo $msg.'<br>';
 			} 
 		?>
 	</div>
 <? } ?>
 
-<?php if(!empty($_SESSION['notice'])){ ?>
+<?php if(!notice_empty()){ ?>
 	<div class="alert alert-success alert-dismissable">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		<?php 
-			foreach($_SESSION['notice'] as $msg){
+			foreach(get_notice() as $msg){
 				echo $msg.'<br>';
 			} 
 		?>
 	</div>
 <? } ?>
+
+<?php
+	reset_errors();
+	reset_notice();
+?>

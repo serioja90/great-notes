@@ -44,7 +44,11 @@
 			$records = $model->getConnection()->find($params);
 			$result = array();
 			foreach($records as $row){
-				array_push($result,(object)$row);
+				$record = new $classname();
+				foreach ($row as $field => $value) {
+					$record->$field = $value;
+				}
+				array_push($result,$record);
 			}
 			return $result;
 		}

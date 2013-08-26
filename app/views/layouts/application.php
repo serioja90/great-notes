@@ -16,14 +16,14 @@
 				<div class="container">
 					<a class="navbar-brand" href="/notes/index">Great Notes</a>
 					<ul class="nav navbar-nav">
-						<li class="<?= ($_SESSION['controller']=='' || $_SESSION['controller']=='notes')?'active':'' ?>">
+						<li class="<?= (controller()=='' || controller()=='notes')?'active':'' ?>">
 							<a href="/notes/index"><span class="glyphicon glyphicon-list-alt"></span> Appunti</a>
 						</li>
-						<li class="<?= ($_SESSION['controller']=='courses'?'active':'') ?>" >
+						<li class="<?= (controller()=='courses'?'active':'') ?>" >
 							<a href="/courses/index"><span class="glyphicon glyphicon-briefcase"></span> Corsi</a>
 						</li>
-						<?php if(isset($_SESSION['current_user'])){ ?>
-							<li class="<?= ($_SESSION['controller']=='users'?'active':'') ?>">
+						<?php if(user_signed_in()){ ?>
+							<li class="<?= (controller()=='users'?'active':'') ?>">
 								<a href="/users/profile"> <span class="glyphicon glyphicon-user"></span> Profilo</a>
 							</li>
 						<? } ?>
@@ -33,10 +33,9 @@
 							<input type="text" class="form-control" placeholder="Cerca">
 						</div>
 					</form>
-					<?php if(!isset($_SESSION['current_user'])){ ?>
+					<?php if(!user_signed_in()){ ?>
 						<div class="pull-right">
-							<a class="btn btn-primary navbar-btn" href="/users/sign_up">Registrati</a>
-							<a class="btn btn-success navbar-btn" href="/users/sign_in">Entra</a>
+							<a class="btn btn-default navbar-btn" href="/users/sign_in">Entra</a>
 						</div>
 					<? }else{ ?>
 						<div class="pull-right">

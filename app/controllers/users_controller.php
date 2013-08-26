@@ -17,18 +17,24 @@
 				)
 			);
 			if(empty($user)){
-				array_push($_SESSION['errors'], "Username/Email o password non corretti.");
+				$login = $this->params["login"];
+				push_error("Username/Email o password non corretti.");
 				$this->render(array('locals' => get_defined_vars(), 'action' => 'sign_in'));
 			}else{
-				$_SESSION['current_user'] = $user;
-				array_push($_SESSION['notice'], "Utente authenticato con successo.");
-				$this->render(array('locals' => get_defined_vars(), 'controller' => 'notes', 'action' => 'index'));
+				$_SESSION['current_user'] = $user[0];
+				push_notice("Utente entrato con successo.");
+				header("location: /notes/index");
 			}
 		}
 
 		public function sign_out(){
 			unset($_SESSION['current_user']);
-			$this->render(array('locals' => get_defined_vars(), 'controller' => 'notes', 'action' => 'index'));
+			if(!user_signed_in()){
+				push_notice("Utente uscito con successo.");
+			}else{
+				push_error("Si è verrificato un errore durante l'operazione di uscita.");
+			}
+			header("location: /notes/index");
 		}
 	}
 ?>
