@@ -44,11 +44,7 @@
 			pg_prepare($this->connection,null,$query);
 			$result = pg_execute($this->connection,null,$params['params']);
 			$records = pg_fetch_all($result);
-			if (!$records){
-				return array();
-			}else{
-				return $records;
-			}
+			return $records ? $records : array();
 		}
 
 		public function find_by_sql($params){
@@ -56,14 +52,12 @@
 			pg_prepare($this->connection,null,$query);
 			$result = pg_execute($this->connection,null,array_slice($params,1));
 			$records = pg_fetch_all($result);
-			if (!$records){
-				return array();
-			}else{
-				return $records;
-			}
+			return $records ? $records : array();
 		}
-		public function execute($params){
-			
+		public function execute($sql,$params){
+			pg_prepare($this->connection,null,$sql);
+			$result = pg_execute($this->connection,null,$params);
+			return $result ? $result : pg_last_error();
 		}
 	}
 

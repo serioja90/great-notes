@@ -1,6 +1,7 @@
-table.table td,
-table.table th{
+table.table.table-striped td,
+table.table.table-striped th{
 	text-align: center;
+	vertical-align: middle;
 }
 
 table.table thead{

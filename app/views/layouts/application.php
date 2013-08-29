@@ -33,13 +33,15 @@
 							<input type="text" class="form-control" placeholder="Cerca">
 						</div>
 					</form>
-					<?php if(!user_signed_in()){ ?>
-						<div class="pull-right">
-							<a class="btn btn-default navbar-btn" href="/users/sign_in">Entra</a>
+					<?php if(user_signed_in()){ ?>
+						<div class="pull-right" style="color: #FFF;">
+							Benvenuto, <strong><?= current_user()->username ?></strong>
+							<a class="btn btn-danger navbar-btn" href="/users/sign_out">Esci</a>
 						</div>
 					<? }else{ ?>
 						<div class="pull-right">
-							<a class="btn btn-danger navbar-btn" href="/users/sign_out">Esci</a>
+							<a class="btn btn-default navbar-btn" href="/users/sign_up">Registrazione</a>
+							<a class="btn btn-default navbar-btn" href="/users/sign_in">Entra</a>
 						</div>
 					<? } ?>
 				</div>

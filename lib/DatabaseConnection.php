@@ -46,12 +46,8 @@
 			return $this->adapter->find_by_sql($params);
 		}
 
-		public function execute($params){
-			$this->adapter->execute($params);
-		}
-
-		public function __destruct(){
-
+		public function execute($sql,$params){
+			return $this->adapter->execute($sql,$params);
 		}
 	}
 ?>

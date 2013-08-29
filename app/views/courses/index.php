@@ -4,6 +4,7 @@
 			<h1>Elenco Corsi <small>L'elenco di tutti i corsi</small></h1>
 		</div>
 		<?php require_once('app/views/shared/_notifications.php') ?>
+		<div id="edit-course"></div>
 		<?php if(user_signed_in()){ ?>
 			<div class="pull-right" style="margin-bottom: 10px;">
 	  			<a data-toggle="modal" href="#AddCourseModal" class="btn btn-primary">Aggiungi Corso</a>
@@ -32,7 +33,7 @@
 								<div class="form-group">
 									<label class="col-lg-2 control-label">Anno</label>
 									<div class="col-lg-10">
-										<input type="number" class="form-control" name="code" placeholder="Anno">
+										<input type="number" class="form-control" name="year" placeholder="Anno">
 									</div>
 								</div>
 							</div>

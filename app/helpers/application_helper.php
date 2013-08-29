@@ -4,7 +4,7 @@
 	}
 
 	function current_user(){
-		return $_SESSION['current_user'];
+		return unserialize($_SESSION['current_user']);
 	}
 
 	function controller(){

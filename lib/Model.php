@@ -56,13 +56,28 @@
 		public static function find_by_sql($params = null){
 			$classname = get_called_class();
 			$model = new $classname();
-			$result = $model->getConnection()->find_by_sql($params);
+			if(!isset($params[1])){
+				$params[1] = array();
+			}
+			$records = $model->getConnection()->find_by_sql($params);
+			$result = array();
+			foreach($records as $row){
+				$record = new $classname();
+				foreach ($row as $field => $value) {
+					$record->$field = $value;
+				}
+				array_push($result,$record);
+			}
+			return $result;
 		}
 
-		public static function execute($params = null){
+		public static function execute($sql,$params){
 			$classname = get_called_class();
 			$model = new $classname();
-			$result = $model->getConnection()->execute($params);
+			if(!isset($params)){
+				$params = array();	
+			}
+			return $model->getConnection()->execute($sql,$params);
 		}
 	}
 ?>

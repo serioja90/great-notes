@@ -5,8 +5,6 @@
 		protected $layout = "application";
 		public function __construct(){
 			$this->params = array_merge($_GET,$_POST);
-			// authenticate user
-			// save user's info to the session
 		}
 
 		protected function render($args){
@@ -52,9 +50,9 @@
 				if(isset($args['locals'])){
 					extract($args['locals']);
 				}
-			}
-			if(file_exists('app/views/'.$controller.'/'.$action.'.php')){
-				require_once('app/views/'.$controller.'/'.$action.'.php');
+			}	
+			if(file_exists('app/views/'.$controller.'/_'.$action.'.php')){
+				require_once('app/views/'.$controller.'/_'.$action.'.php');
 			}else{
 				require_once('404.html');
 			}

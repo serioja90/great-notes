@@ -18,8 +18,8 @@
 						<input type="password" class="form-control" name="password" placeholder="Password">
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Accedi</button>
-						<a href="/users/register" class="btn btn-success">Registrazione</a>
+						<button type="submit" class="btn btn-primary">Invia</button>
+						<a href="/users/sign_up">Crea nuovo account</a>
 					</div>
 				</div>
 			</fieldset>

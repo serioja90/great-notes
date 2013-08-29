@@ -1,6 +1,6 @@
 <?php
 	class Note extends Model{
-		protected $table_name = "courses.notes";
+		protected $table_name = "notes";
 		protected $primary_key = "id";
 	}
 ?>
