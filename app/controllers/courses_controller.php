@@ -5,6 +5,24 @@
 			$this->render(array('locals' => get_defined_vars()));
 		}
 
+		public function details(){
+			$course = Course::find($this->params['id'])[0];
+			$lessons = Lesson::find(array('conditions' => 'course_id=$1', 'params' => array($this->params['id'])));
+			$this->render(array('locals' => get_defined_vars()));
+		}
+
+		public function add_lesson(){
+			if(user_signed_in()){
+				$result = Lesson::add_lesson($this->params);
+				if($result){
+					push_notice("Lezione aggiunta con successo.");
+				}
+			}else{
+				push_error("Accesso negato.");
+			}
+			header("location: /courses/details?id=".$this->params['course_id']);
+		}
+
 		public function create(){
 			if(Course::add_course($this->params)){
 				push_notice("Corso aggiunto con successo.");

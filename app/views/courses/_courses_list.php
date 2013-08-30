@@ -4,9 +4,7 @@
 			<th>Codice</th>
 			<th>Nome</th>
 			<th>Anno</th>
-			<?php if(user_signed_in() && current_user()->is_admin()){ ?>
-				<th>Azioni</th>
-			<? } ?>
+			<th>Azioni</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,9 +13,10 @@
 				<td><?= $course->code ?></td>
 				<td><?= $course->name ?></td>
 				<td><?= $course->year ?></td>
-				<?php if(user_signed_in() && current_user()->is_admin()){ ?>
-					<td>
-						<div class="btn-group">
+				<td>
+					<div class="btn-group">
+						<a href="/courses/details?id=<?=$course->id ?>" class="btn btn-default">Dettagli</a>
+						<?php if(user_signed_in() && current_user()->is_admin()){ ?>
 							<button class="btn btn-default" onclick="editCourse(<?= $course->id ?>);return false;">
 								Modifica
 							</button>
@@ -28,9 +27,9 @@
 								);">
 								Cancella
 							</a>
-						</div>
-					</td>
-				<? } ?>
+						<? } ?>
+					</div>
+				</td>
 			</tr>
 		<? } ?>
 	</tbody>

@@ -5,8 +5,10 @@
 	</head>
 	<link rel="stylesheet" type="text/css" href="/app/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/app/assets/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/app/assets/css/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="/app/assets/css/base.css">
 	<script type="text/javascript" src="/app/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/app/assets/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/app/assets/js/bootstrap.min.js"></script>
 	<style type="text/css">
 	</style>
