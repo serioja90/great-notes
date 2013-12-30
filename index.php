@@ -8,6 +8,7 @@
 	}
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
+	date_default_timezone_set('Europe/Rome');
 	register_shutdown_function(function() {
 	    $lastError = error_get_last();
 	    if (!empty($lastError) && $lastError['type'] == E_ERROR) {
@@ -15,24 +16,20 @@
 	        header('HTTP/1.0 500 Internal Server Error');
 	    }
 	});
-
 	require_once('config/constants.php');
 	foreach(glob("lib/*.php") as $file){
-    	require_once($file);
+	   	require_once($file);
 	}
-    
-    foreach (glob("app/helpers/*.php") as $file) {
-    	require_once($file);
-    }
-
+	   
+	   foreach (glob("app/helpers/*.php") as $file) {
+	   	require_once($file);
+	   }
 	foreach(glob("app/controllers/*.php") as $file){
-    	require_once($file);
+	   	require_once($file);
 	}
-
 	foreach(glob("app/models/*.php") as $file){
-    	require_once($file);
+	   	require_once($file);
 	}
-
 	$parser = new URLParser(BASE_URI);
 	$_SESSION['parser'] = $parser;
 	if($parser->getController()==''){

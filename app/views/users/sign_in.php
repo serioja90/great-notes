@@ -19,7 +19,6 @@
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary">Invia</button>
-						<a href="/users/sign_up">Crea nuovo account</a>
 					</div>
 				</div>
 			</fieldset>

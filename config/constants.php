@@ -1,4 +1,4 @@
-<?
+<?php
 	define("SECRET_TOKEN","neatVofPaShogheijEacBiWiepAnAmhylfAtvamigfoovAkjiWrypsUsUbAjVeb3");
 	define("BASE_URI","/");
 	define("DEFAULT_CONTROLLER","notes");

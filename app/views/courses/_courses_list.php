@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover table-condensed">
 	<thead>
 		<tr>
 			<th>Codice</th>
@@ -14,8 +14,8 @@
 				<td><?= $course->name ?></td>
 				<td><?= $course->year ?></td>
 				<td>
-					<div class="btn-group">
-						<a href="/courses/details?id=<?=$course->id ?>" class="btn btn-default">Dettagli</a>
+					<div class="btn-group btn-group-sm">
+						<a href="/courses/details?id=<?=$course->id ?>" class="btn btn-default"><i class="fa fa-info-circle fa-fw"></i> Dettagli</a>
 						<?php if(user_signed_in() && current_user()->is_admin()){ ?>
 							<button class="btn btn-default" onclick="editCourse(<?= $course->id ?>);return false;">
 								Modifica

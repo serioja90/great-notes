@@ -10,7 +10,8 @@
 						<input 	type="text" 
 								class="form-control" 
 								name="username" 
-								placeholder="Username" 
+								placeholder="Username"
+								required 
 								value="<?= isset($username)?$username:"" ?>">
 					</div>
 					<div class="form-group">
@@ -30,8 +31,8 @@
 						<input type="password" class="form-control" name="confirm_password" placeholder="Conferma Password">
 					</div>
 					<div class="form-group">
+						<a href="/notes/index" class="btn btn-default">Annulla</a>
 						<button type="submit" class="btn btn-primary">Invia</button>
-						<a href="/users/sign_in">Ho già un account</a>
 					</div>
 				</div>
 			</fieldset>
