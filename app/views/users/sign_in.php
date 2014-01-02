@@ -11,14 +11,17 @@
 								class="form-control" 
 								name="login" 
 								placeholder="Username o Email" 
-								value="<?= isset($login)?$login:"" ?>">
+								value="<?= isset($login)?$login:"" ?>"
+								tabindex="1"
+								required>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Password</label>
-						<input type="password" class="form-control" name="password" placeholder="Password">
+						<input type="password" class="form-control" name="password" placeholder="Password" tabindex="2">
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Invia</button>
+						<a href="/notes/index" class="btn btn-default" tabindex="4">Annulla</a>
+						<button type="submit" class="btn btn-primary" tabindex="3">Invia</button>
 					</div>
 				</div>
 			</fieldset>

@@ -1,0 +1,22 @@
+[02-Jan-2014 16:54:38 Europe/Rome] Ciaoooo
+[02-Jan-2014 16:55:07 Europe/Rome] PHP Warning:  error_log() expects parameter 1 to be string, array given in /home/sergiu/git/great-notes/app/controllers/application_controller.php on line 25
+[02-Jan-2014 16:55:23 Europe/Rome] 
+[02-Jan-2014 17:01:38 Europe/Rome] args: 1
+[02-Jan-2014 17:01:48 Europe/Rome] args: 1
+[02-Jan-2014 17:01:56 Europe/Rome] args: 1
+[02-Jan-2014 17:02:03 Europe/Rome] args: 1
+[02-Jan-2014 17:03:00 Europe/Rome] args: 1
+[02-Jan-2014 17:04:12 Europe/Rome] PHP Notice:  Undefined variable: output in /home/sergiu/git/great-notes/app/views/layouts/application.php on line 47
+[02-Jan-2014 17:04:17 Europe/Rome] PHP Notice:  Undefined variable: output in /home/sergiu/git/great-notes/app/views/layouts/application.php on line 47
+[02-Jan-2014 17:04:18 Europe/Rome] PHP Notice:  Undefined variable: output in /home/sergiu/git/great-notes/app/views/layouts/application.php on line 47
+[02-Jan-2014 17:04:19 Europe/Rome] PHP Notice:  Undefined variable: output in /home/sergiu/git/great-notes/app/views/layouts/application.php on line 47
+[02-Jan-2014 17:04:20 Europe/Rome] PHP Notice:  Undefined variable: output in /home/sergiu/git/great-notes/app/views/layouts/application.php on line 47
+[02-Jan-2014 17:04:47 Europe/Rome] args: 1
+[02-Jan-2014 17:05:04 Europe/Rome] args: 1
+[02-Jan-2014 17:05:05 Europe/Rome] args: 1
+[02-Jan-2014 17:05:21 Europe/Rome] args: 1
+[02-Jan-2014 17:05:23 Europe/Rome] args: 1
+[02-Jan-2014 17:06:18 Europe/Rome] args: 1
+[02-Jan-2014 17:06:19 Europe/Rome] args: 1
+[02-Jan-2014 17:06:22 Europe/Rome] args: 1
+[02-Jan-2014 17:10:35 Europe/Rome] args: 1

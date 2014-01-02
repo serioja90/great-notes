@@ -14,9 +14,11 @@
 		<script type="text/javascript" src="/app/assets/js/tinymce/tinymce.min.js"></script>
 	</head>
 	<body>
+		<div class="jumbotron conainer">
+			<h1><strong><span class="text-success">Great</span><span class="text-danger">Notes</span></strong></h1>
+		</div>
 		<div class="navbar navbar-default" role="navigation">
 			<div class="container">
-				<a class="navbar-brand" href="/notes/index">Great Notes</a>
 				<ul class="nav navbar-nav">
 					<li class="<?= (controller()=='' || controller()=='notes')?'active':'' ?>">
 						<a href="/notes/index"><span class="fa fa-files-o fa-fw"></span> Appunti</a>
@@ -32,12 +34,12 @@
 				</ul>
 				<?php if(user_signed_in()){ ?>
 					<div class="navbar-right">
-						Benvenuto, <strong><?= current_user()->username ?></strong>
-						<a  class="btn btn-danger navbar-btn" href="/users/sign_out">Esci</a>
+						<div class="navbar-text">Benvenuto, <strong><?= current_user()->username ?></strong></div>
+						<a  class="btn btn-default btn-sm navbar-btn" href="/users/sign_out">Esci</a>
 					</div>
 				<? }else{ ?>
 					<div class="navbar-right">
-						<a class="btn btn-success btn-sm navbar-btn" href="/users/sign_up">Registrazione</a>
+						<a class="btn btn-primary btn-sm navbar-btn" href="/users/sign_up">Registrazione</a>
 						<a class="btn btn-default btn-sm navbar-btn" href="/users/sign_in">Accedi</a>
 					</div>
 				<? } ?>
@@ -46,11 +48,16 @@
 		<?php
 			echo $output;
 		?>
-		<br />
-		<div class="navbar navbar-inverse container-fluid text-center">
-			<p class="navbar-text">
-				Developed and powered by Groza Sergiu. <?= date("Y") ?>
-			</p>
-		</div>
+		<hr>
+		<footer>
+			<div class="container">
+				<p>
+					Designed and built by Groza Sergiu. 
+					Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>,
+					<a href="http://fontawesome.io/" target="_blank">Font Awesome</a> and
+					<a href="http://www.tinymce.com/" target="_blank">TinyMCE</a> open source projects.
+				</p>
+			</div>
+		</footer>
 	</body>
 </html>

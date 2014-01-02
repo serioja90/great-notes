@@ -21,19 +21,11 @@
 				if(isset($args['locals'])){
 					extract($args['locals']);
 				}
-			}	
+			}
 			ob_start();
-			if(file_exists('app/views/'.$controller.'/'.$action.'.php')){
-				require_once('app/views/'.$controller.'/'.$action.'.php');
-			}else{
-				require_once('404.html');
-			}
+			include('app/views/'.$controller.'/'.$action.'.php');
 			$output = ob_get_clean();
-			if(file_exists('app/views/layouts/'.$this->layout.'.php')){
-				require_once('app/views/layouts/'.$this->layout.'.php');
-			}else{
-				require_once('404.html');
-			}
+			include('app/views/layouts/'.$this->layout.'.php');
 		}
 
 		protected function render_partial($args){

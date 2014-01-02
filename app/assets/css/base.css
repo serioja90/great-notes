@@ -37,3 +37,13 @@ table.table.table-striped th{
 	background: linear-gradient(to bottom,  #606c88 0%,#3f4c6b 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
 }
+
+.jumbotron{
+	background: url("/app/assets/images/notes.png");
+	margin-bottom: 0px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	background-size: 100% 120%;
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}

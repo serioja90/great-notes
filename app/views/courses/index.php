@@ -1,13 +1,13 @@
 <div class="container">
 	<div>
 		<div class="page-header">
-			<h1>Elenco Corsi <small>L'elenco di tutti i corsi</small></h1>
+			<h1>Elenco Corsi</h1>
 		</div>
 		<?php require_once('app/views/shared/_notifications.php') ?>
 		<div id="edit-course"></div>
 		<?php if(user_signed_in()){ ?>
 			<div class="pull-right" style="margin-bottom: 10px;">
-	  			<a data-toggle="modal" href="#AddCourseModal" class="btn btn-primary">Aggiungi Corso</a>
+	  			<a href="/courses/new_course" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle fa-fw"></i> Aggiungi Corso</a>
 			</div>
 			<div class="modal fade" id="AddCourseModal" tabindex="-1" role="dialog" aria-hidden="true">
 				<form class="form-horizontal" role="form" method="POST" action="/courses/create">

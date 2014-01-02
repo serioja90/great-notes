@@ -11,8 +11,8 @@
 								class="form-control" 
 								name="username" 
 								placeholder="Username"
-								required 
-								value="<?= isset($username)?$username:"" ?>">
+								value="<?= isset($username)?$username:"" ?>"
+								required>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Email</label>
@@ -20,7 +20,8 @@
 								class="form-control" 
 								name="email" 
 								placeholder="Email" 
-								value="<?= isset($email)?$email:"" ?>">
+								value="<?= isset($email)?$email:"" ?>"
+								required>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Password</label>
