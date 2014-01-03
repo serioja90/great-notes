@@ -1,51 +1,54 @@
 <div class="container">
-	<div>
-		<div class="page-header">
-			<h1>Elenco Corsi</h1>
-		</div>
-		<?php require_once('app/views/shared/_notifications.php') ?>
-		<div id="edit-course"></div>
-		<?php if(user_signed_in()){ ?>
-			<div class="pull-right" style="margin-bottom: 10px;">
-	  			<a href="/courses/new_course" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle fa-fw"></i> Aggiungi Corso</a>
-			</div>
-			<div class="modal fade" id="AddCourseModal" tabindex="-1" role="dialog" aria-hidden="true">
-				<form class="form-horizontal" role="form" method="POST" action="/courses/create">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title">Aggiungi Corso</h4>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label class="col-lg-2 control-label">Codice</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control" name="code" placeholder="Codice">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-lg-2 control-label">Nome</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control" name="name" placeholder="Nome">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-lg-2 control-label">Anno</label>
-									<div class="col-lg-10">
-										<input type="number" class="form-control" name="year" placeholder="Anno">
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">Save changes</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		<?php } ?>
-		<?php require_once("app/views/courses/_courses_list.php"); ?>
-	</div>
+  <div>
+    <div class="page-header">
+      <h1>Elenco Corsi</h1>
+    </div>
+    <? require_once('app/views/shared/_notifications.php') ?>
+    <? if(user_signed_in()){ ?>
+      <a href="/courses/new_course" class="btn btn-sm btn-primary">
+        <i class="fa fa-plus-circle fa-fw"></i> Aggiungi Corso
+      </a>
+    <? } ?>
+    <? if(count($courses) > 0){ ?>
+      <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+          <tr>
+            <th>Codice</th>
+            <th>Nome</th>
+            <th>Docente</th>
+            <th>Lezioni</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach($courses as $course){ ?>
+            <tr>
+              <td><?= $course->code ?></td>
+              <td><?= $course->name ?></td>
+              <td><?= $course->professor ?></td>
+              <td><?= $course->lessons ?></td>
+              <td>
+                <div class="btn-group btn-group-xs">
+                  <a href="/courses/lessons?course=<?=$course->code ?>" class="btn btn-default"><i class="fa fa-tasks fa-fw"></i> Lezioni</a>
+                  <?php if(user_signed_in() && current_user()->is_admin()){ ?>
+                    <a href="/courses/edit?course=<?= $course->code ?>" class="btn btn-default"><i class="fa fa-edit fa-fw"></i> Modifica</a>
+                    <a  href="/courses/delete?course=<?= $course->code ?>" 
+                      class="btn btn-default"
+                      onclick="return confirm(
+                        'Il corso \'<?= $course->code ?>\' verrà cancellato. Procedere comunque?'
+                      );">
+                      <i class="fa fa-trash-o fa-fw"></i> Cancella
+                    </a>
+                  <? } ?>
+                </div>
+              </td>
+            </tr>
+          <? } ?>
+        </tbody>
+      </table>
+      <div class=""></div>
+    <? }else{ ?>
+      <h3><strong><span class="text-danger">Nessun corso trovato.</span></strong></h3>
+    <? } ?>
+  </div>
 </div>

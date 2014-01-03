@@ -47,3 +47,8 @@ table.table.table-striped th{
 	background-repeat: no-repeat;
 	background-position: right bottom;
 }
+
+table thead {
+  color: #FFF;
+  background: #3B240B;
+}

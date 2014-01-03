@@ -52,7 +52,7 @@
 		<footer>
 			<div class="container">
 				<p>
-					Designed and built by Groza Sergiu. 
+					Designed and built by <strong><span class="text-danger">Groza Sergiu</span></strong>. 
 					Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>,
 					<a href="http://fontawesome.io/" target="_blank">Font Awesome</a> and
 					<a href="http://www.tinymce.com/" target="_blank">TinyMCE</a> open source projects.
