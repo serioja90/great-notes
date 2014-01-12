@@ -105,6 +105,15 @@
       }
     }
 
+    public function new_lesson(){
+      if(user_signed_in()){
+
+      }else{
+        push_error("Accesso negato.");
+        header("location: /courses/lessons");
+      }
+    }
+
     public function add_lesson(){
       if(user_signed_in()){
         $result = Lesson::add_lesson($this->params);
@@ -114,7 +123,7 @@
       }else{
         push_error("Accesso negato.");
       }
-      header("location: /courses/details?id=".$this->params['course_id']);
+      header("location: /courses/index?id=".$this->params['course_id']);
     }
   }
 ?>  

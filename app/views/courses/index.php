@@ -1,7 +1,7 @@
 <div class="container">
   <div>
     <div class="page-header">
-      <h1>Elenco Corsi</h1>
+      <h2>Elenco Corsi</h2>
     </div>
     <? require_once('app/views/shared/_notifications.php') ?>
     <? if(user_signed_in()){ ?>
@@ -24,12 +24,12 @@
           <?php foreach($courses as $course){ ?>
             <tr>
               <td><?= $course->code ?></td>
-              <td><?= $course->name ?></td>
-              <td><?= $course->professor ?></td>
+              <td class="text-left"><?= $course->name ?></td>
+              <td class="text-left"><?= $course->professor ?></td>
               <td><?= $course->lessons ?></td>
               <td>
                 <div class="btn-group btn-group-xs">
-                  <a href="/courses/lessons?course=<?=$course->code ?>" class="btn btn-default"><i class="fa fa-tasks fa-fw"></i> Lezioni</a>
+                  <a href="/lessons/index?course=<?=$course->code ?>" class="btn btn-default"><i class="fa fa-tasks fa-fw"></i> Lezioni</a>
                   <?php if(user_signed_in() && current_user()->is_admin()){ ?>
                     <a href="/courses/edit?course=<?= $course->code ?>" class="btn btn-default"><i class="fa fa-edit fa-fw"></i> Modifica</a>
                     <a  href="/courses/delete?course=<?= $course->code ?>" 
