@@ -19,10 +19,54 @@
 
     public function new_lesson(){
       if(!user_signed_in()){
-        push_error("Accesso negato");
-        header("location: courses/index");
+        push_error("Accesso negato.");
+        header("location: /lessons/index?course=".$this->params['course']);
       }else{
         $this->render(array('locals' => get_defined_vars(), 'action' => 'new'));
+      }
+    }
+
+    public function create(){
+      if(!user_signed_in()){
+        push_error("Accesso negato.");
+        header("location: /lessons/index?course=".$this->params['course']);
+      }else{
+        if(Lesson::add_lesson($this->params)){
+          push_notice("Lezione aggiunta con successo!");
+          header("location: /lessons/index?course=".$this->params['course']);
+        }else{
+          $this->render(array('locals' => get_defined_vars(), 'action' => 'new'));
+        }
+      }
+    }
+
+    public function edit(){
+      $lesson = Lesson::find($this->params['id'])[0];
+      if(!user_signed_in()){
+        push_error("Accesso negato.");
+        header("location: /lessons/index?course=".$this->params['course']);
+      }else{
+        if(isset($lesson)){
+          $this->render(array('locals' => get_defined_vars()));
+        }else{
+          push_error("Impossibile trovare la lezione con id='".$this->params['id']."'!");
+          header("location: /lessons/index?course=".$this->params['course']);
+        }
+      }
+    }
+
+    public function update(){
+      if(!user_signed_in()){
+        push_error("Accesso negato.");
+        header("location: /lessons/index?course=".$this->params['course']);
+      }else{
+        if(Lesson::update($this->params)){
+          push_notice("Lezione aggiornata con successo!");
+          header("location: /lessons/index?course=".$this->params['course']);
+        }else{
+          $lesson = Lesson::find($this->params['id'])[0];
+          $this->render(array('locals' => get_defined_vars(), 'action' => 'edit'));
+        }
       }
     }
   }

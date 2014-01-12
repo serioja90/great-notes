@@ -2,6 +2,7 @@
   <div class="page-header">
     <h2>Elenco Lezioni <small><span class="text-info">'<?= $course->name ?>'</span></small></h2>
   </div>
+  <? require_once('app/views/shared/_notifications.php') ?>
   <? if(user_signed_in()){ ?>
     <a href="/courses/index" class="btn btn-sm btn-default">
       <i class="fa fa-arrow-circle-left fa-fw"></i> Torna ai Corsi
@@ -11,7 +12,7 @@
     </a>
   <? } ?>
   <? if(count($lessons) > 0){ ?>
-    <table>
+    <table class="table table-bordered table-striped table-hover table-condensed">
       <thead>
         <tr>
           <th>ID</th>
@@ -22,7 +23,29 @@
           <th>Azioni</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <? foreach($lessons as $lesson){ ?>
+          <tr>
+            <td><?= $lesson->id ?></td>
+            <td><?= $lesson->date ?></td>
+            <td><?= $lesson->lesson_start ?></td>
+            <td><?= $lesson->lesson_end ?></td>
+            <td><?= $lesson->classroom ?></td>
+            <td>
+              <div class="btn-group btn-group-xs">
+                <? if(user_signed_in()){ ?>
+                  <a href="/lessons/edit?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default">
+                    <i class="fa fa-edit fa-fw"></i> Modifica
+                  </a>
+                  <a href="/lessons/delete?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default">
+                    <i class="fa fa-trash-o fa-fw"></i> Cancella
+                  </a>
+                <? } ?>
+              </div>
+            </td>
+          </tr>
+        <? } ?>
+      </tbody>
     </table>
   <? }else{ ?>
     <h3><strong><span class="text-danger">Nessuna lezione trovata per il corso '<?= $course->name ?>'.</span></strong></h3>
