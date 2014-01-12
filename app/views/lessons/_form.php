@@ -2,11 +2,13 @@
 <form class="form-horizontal" role="form" action="/lessons/<?= $action ?>" method="POST">
   <input type="hidden" name="course" value="<?= $params['course'] ?>" />
   <div class="form-group">
-    <label class="col-sm-3 control-label">Data:</label>
+    <label class="col-sm-3 control-label">Data Lezione:</label>
     <div class="col-sm-4">
-      <div class="input-group col-sm-5" data-datepicker="true">
-        <input name="date" type="text" class="form-control" readonly required/>
-        <a class="input-group-addon btn btn-sm btn-default"><i class="fa fa-calendar fa-fw"></i></a>
+      <div class='input-group date col-sm-5' id='date'>
+        <input type='text' class="form-control" name="date" data-format="YYYY-MM-DD" required />
+        <span class="input-group-addon">
+          <span class="glyphicons glyphicons-calendar"></span>
+        </span>
       </div>
       <span class="help-block">
         <p class="text-info">Selezionare la data della lezione.</p>
@@ -14,16 +16,28 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-3 control-label">Inizio:</label>
+    <label class="col-sm-3 control-label">Inizio Lezione:</label>
     <div class="col-sm-4">
+      <div class='input-group date col-sm-5' id='start'>
+        <input type='text' class="form-control" name="start" data-format="hh:mm" required />
+        <span class="input-group-addon">
+          <span class="glyphicons glyphicons-calendar"></span>
+        </span>
+      </div>
       <span class="help-block">
         <p class="text-info">Indicare l'inizio della lezione.</p>
       </span>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-3 control-label">Fine:</label>
+    <label class="col-sm-3 control-label">Fine Lezione:</label>
     <div class="col-sm-4">
+      <div class='input-group date col-sm-5' id='end'>
+        <input type='text' class="form-control" name="end" data-format="hh:mm" required />
+        <span class="input-group-addon">
+          <span class="glyphicons glyphicons-calendar"></span>
+        </span>
+      </div>
       <span class="help-block">
         <p class="text-info">Indicare la fine della lezione.</p>
       </span>
@@ -32,6 +46,7 @@
   <div class="form-group">
     <label class="col-sm-3 control-label">Aula:</label>
     <div class="col-sm-4">
+      <input type='text' class="form-control" name="classroom" required />
       <span class="help-block">
         <p class="text-info">Indicare l'aula dove si svolgerà la lezione.</p>
       </span>
@@ -51,32 +66,12 @@
 <script type="text/javascript">
   jQuery(function($){
     $(document).ready(function(){
-      // $('*[data-datepicker="true"] input[type="text"]').datepicker({
-      //   format: "yyyy-mm-dd",
-      //   todayBtn: true,
-      //   orientation: "top left",
-      //   autoclose: true,
-      //   todayHighlight: true
-      // });
-      // $(document).on('touch click', '*[data-datepicker="true"] .input-group-addon', function(e){
-      //   $('input[type="text"]', $(this).parent()).focus();
-      // });
-
+      $("#date").datetimepicker({
+        pickTime: false
+      });
+      $("#start, #end").datetimepicker({
+        pickDate: false
+      });
     });
   });
-</script>
-
-<div class='well'>
-    <div class="form-group">
-        <div class='input-group date' id='datetimepicker2'>
-            <input type='text' class="form-control" />
-            <span class="input-group-addon"><span class="glyphicons glyphicons-calendar"></span>
-            </span>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker2').datetimepicker();
-    });
 </script>

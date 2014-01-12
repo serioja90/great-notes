@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="/app/assets/js/less.js"></script>
 		<script type="text/javascript" src="/app/assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/app/assets/js/tinymce/tinymce.min.js"></script>
-		<script type="text/javascript" src="/app/assets/js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="/app/assets/js/bootstrap-datetimepicker.js"></script>
 	</head>
 	<body>
 		<div class="jumbotron conainer">
