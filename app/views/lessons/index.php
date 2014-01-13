@@ -33,6 +33,9 @@
             <td><?= $lesson->classroom ?></td>
             <td>
               <div class="btn-group btn-group-xs">
+                <a href="/notes/index?lesson=<?= $lesson->id ?>" class="btn btn-mini btn-default">
+                  <i class="fa fa-clipboard fa-fw"></i> Appunti
+                </a>
                 <? if(user_signed_in()){ ?>
                   <a href="/lessons/edit?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default">
                     <i class="fa fa-edit fa-fw"></i> Modifica
