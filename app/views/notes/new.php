@@ -1,6 +1,6 @@
 <div class="container">
   <div class="page-header">
-    <h2>Markup Appunti</h2>
+    <h2>Aggiunta Appunti</h2>
   </div>
   <? require_once('app/views/shared/_notifications.php') ?>
   <?

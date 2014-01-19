@@ -1,4 +1,10 @@
-<textarea id="content" rows="15"></textarea>
+<? $params = array_merge($_GET,$_POST); ?>
+<form class="form-horizontal" role="form" action="/lessons/<?= $action ?>" method="POST">
+  <div class="form-group"></div>
+  <textarea id="content" rows="15"></textarea>
+</form>
+
+
 <script type="text/javascript">
   tinymce.init({
     selector:'#content',
