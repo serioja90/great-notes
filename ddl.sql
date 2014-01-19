@@ -39,7 +39,8 @@ CREATE TABLE notes(
   lesson_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
   content TEXT NOT NULL,
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(), 
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
   FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -50,14 +51,17 @@ CREATE OR REPLACE FUNCTION search_notes(IN query_str text)
             id int,
             content text,
             created_at timestamp,
-            course_code varchar,
-            course_name varchar,
+            updated_at timestamp,
+            date DATE,
+            classroom varchar,
+            code varchar,
+            name varchar,
             username varchar,
             weight real
           ) AS $$
   BEGIN
     -- return a table with interest columns
-    RETURN QUERY  SELECT n.id, n.content, n.created_at, c.code, c.name, u.username, s.score
+    RETURN QUERY  SELECT n.id, n.content, n.created_at, n.updated_at, l.date, l.classroom, c.code, c.name, u.username, s.score
                   FROM (
                         -- use to_tsvector, to_tsquery and ts_rank_cd functions to find
                         -- the lessons that match search parameters and to rank them according
