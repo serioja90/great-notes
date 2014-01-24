@@ -7,9 +7,14 @@
       </small>
     </h2>
   </div>
-  <button type="button" class="btn btn-sm btn-default" onclick="history.back();"><i class="fa fa-arrow-circle-left fa-fw"></i> Torna agli Appunti</button>
+  <?php require_once('app/views/shared/_notifications.php') ?>
+  <a href="/notes/index" type="button" class="btn btn-sm btn-default">
+    <i class="fa fa-arrow-circle-left fa-fw"></i> Torna agli Appunti
+  </a>
   <hr />
   <?= $note->content ?>
   <hr />
-  <button type="button" class="btn btn-sm btn-default" onclick="history.back();"><i class="fa fa-arrow-circle-left fa-fw"></i> Torna agli Appunti</button>
+  <a href="/notes/index" type="button" class="btn btn-sm btn-default">
+    <i class="fa fa-arrow-circle-left fa-fw"></i> Torna agli Appunti
+  </a>
 </div>

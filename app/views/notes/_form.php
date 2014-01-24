@@ -1,5 +1,6 @@
 <? $params = array_merge($_GET,$_POST); ?>
 <form class="form-horizontal" role="form" action="/notes/<?= $action ?>" method="POST">
+  <input type="hidden" name="note" value="<?= isset($note) ? $note->id : '' ?>" />
   <div class="form-group">
     <label class="control-label col-sm-2">Corso:</label>
     <div class="controls col-sm-10">
@@ -30,13 +31,14 @@
               <?= $note->lesson_id == (string)($lesson->id) ? 'selected' : '' ?>
             <? } ?>
           >
-            <?= $lesson->date ?> (<?= $lesson->lesson_start ?> - <?= $lesson->lesson_end ?>)
+            <?= date("Y-m-d, l",strtotime($lesson->date)) ?> (<?= $lesson->lesson_start ?> - <?= $lesson->lesson_end ?>)
           </option>
         <? } ?>
       </select>
     </div>
   </div>
-  <textarea id="content" name="content" rows="15"></textarea>
+  <? $content = (isset($params['content']) ? $params['content'] : (isset($note) ? $note->content : '')) ?>
+  <textarea id="content" name="content" rows="15"><?= $content ?></textarea>
   <div class="form-actions">
     <hr>
     <div class="text-right">

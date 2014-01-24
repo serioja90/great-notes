@@ -90,5 +90,42 @@
         }
       }
     }
+
+    public function update(){
+      if(!user_signed_in()){
+        push_error("Accesso negato!");
+        header("location: /notes/index");
+      }else{
+        $note = Note::find($this->params['note'])[0];
+        if(isset($note)){
+          if(current_user()->id==$note->user_id || current_user()->is_admin()){
+            if(Note::update($this->params)){
+              push_notice("Appunti aggiornati con successo!");
+              header("location: /notes/show?note=".$this->params['note']);
+            }else{
+              $courses = Course::find();
+              $lesson = Lesson::find($note->lesson_id)[0];
+              $lessons = Lesson::find(array('conditions' => 'course_code=$1', 'params' => array($lesson->course_code)));
+              $this->render(array('locals' => get_defined_vars(), 'action' => 'edit'));
+            }
+          }else{
+            push_error("Non hai i permessi necessari per modificare questi appunti!");
+            header("location: /notes/index");
+          }
+        }else{
+          push_error("Appunti da modificare non trovati!");
+          header("location: /notes/index");
+        }
+      }
+    }
+
+    public function delete(){
+      if(!user_signed_in()){
+        push_error("Accesso negato!");
+      }else{
+        Note::delete($this->params['note']);
+      }
+      header("location: /notes/index");
+    }
   }
 ?>

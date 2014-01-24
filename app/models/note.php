@@ -20,6 +20,45 @@
       }
     }
 
+    public static function update($params){
+      if(self::validate($params)){
+        $result = self::execute(
+          "UPDATE notes SET lesson_id=$1, content=$2, updated_at=NOW() WHERE id=$3",
+          array($params['lesson'],$params['content'],$params['note'])
+        );
+        if(is_string($result)){
+          push_error($result);
+          return false;
+        }else{
+          return true;
+        }
+      }else{
+        return false;
+      }
+    }
+
+    public static function delete($id){
+      if(isset($id) && trim($id)!=''){
+        $note = Note::find($id)[0];
+        if(isset($note)){
+          if(current_user()->id==$note->user_id || current_user()->is_admin()){
+            $result = self::execute("DELETE FROM notes WHERE id=$1", array($id));
+            if(is_string($result)){
+              push_error($result);
+            }else{
+              push_notice("Appunti cancellati con successo!");
+            }
+          }else{
+            push_error("Accesso negato!");
+          }
+        }else{
+          push_error("Appunti da cancellare non trovati!");
+        }
+      }else{
+        push_error("ID appunti non valido!");
+      }
+    }
+
     static function validate($params){
       $valid = true;
       if(!isset($params['course']) || trim($params['course'])==''){

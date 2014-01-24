@@ -69,5 +69,16 @@
         }
       }
     }
+
+    public function delete(){
+      if(!user_signed_in()){
+        push_error("Accesso negato!");
+      }else{
+        if(Lesson::delete($this->params['id'])){
+          push_notice("Lezione cancellata con successo!");
+        }
+      }
+      header("location: /lessons/index?course=".$this->params['course']);
+    }
   }
 ?>

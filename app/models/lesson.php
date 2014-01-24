@@ -42,6 +42,22 @@
       }
     }
 
+    public static function delete($id){
+      $lesson = self::find($id)[0];
+      if(isset($lesson)){
+        $result = self::execute("DELETE FROM lessons WHERE id=$1",array($id));
+        if(is_string($result)){
+          push_error($result);
+          return false;
+        }else{
+          return true;
+        }
+      }else{
+        push_error("Lezione da cancellare non trovata!");
+        return false;
+      }
+    }
+
     static function validate($params){
       $valid = true;
       if(!isset($params['course']) || $params['course']==""){

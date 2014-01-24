@@ -9,7 +9,8 @@
           <a href="/notes/edit?note=<?= $note->id ?>" class="btn btn-sm btn-default">
             <i class="fa fa-edit fa-fw"></i> Modifica
           </a>
-          <a href="/notes/delete?note=<?= $note->id ?>" class="btn btn-sm btn-default">
+          <a href="/notes/delete?note=<?= $note->id ?>" class="btn btn-sm btn-default"
+            onclick="return confirm('Sei sicuro di voler cancellare gli appunti selezionati?');">
             <i class="fa fa-trash-o fa-fw"></i> Cancella
           </a>
         <? } ?>

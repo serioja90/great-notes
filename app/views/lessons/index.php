@@ -27,7 +27,7 @@
         <? foreach($lessons as $lesson){ ?>
           <tr>
             <td><?= $lesson->id ?></td>
-            <td><?= $lesson->date ?></td>
+            <td><?= date("Y-m-d, l",strtotime($lesson->date)) ?></td>
             <td><?= $lesson->lesson_start ?></td>
             <td><?= $lesson->lesson_end ?></td>
             <td><?= $lesson->classroom ?></td>
@@ -40,7 +40,8 @@
                   <a href="/lessons/edit?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default">
                     <i class="fa fa-edit fa-fw"></i> Modifica
                   </a>
-                  <a href="/lessons/delete?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default">
+                  <a href="/lessons/delete?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default"
+                     onclick="return confirm('Sei sicuro di voler cancellare la lezione selezionata?');">
                     <i class="fa fa-trash-o fa-fw"></i> Cancella
                   </a>
                 <? } ?>
