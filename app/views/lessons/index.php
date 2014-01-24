@@ -20,6 +20,7 @@
           <th>Inizio</th>
           <th>Fine</th>
           <th>Aula</th>
+          <th>Appunti</th>
           <th>Azioni</th>
         </tr>
       </thead>
@@ -31,6 +32,7 @@
             <td><?= $lesson->lesson_start ?></td>
             <td><?= $lesson->lesson_end ?></td>
             <td><?= $lesson->classroom ?></td>
+            <td><span class="badge"><?= $lesson->notes ?></span></td>
             <td>
               <div class="btn-group btn-group-xs">
                 <a href="/notes/index?lesson=<?= $lesson->id ?>" class="btn btn-mini btn-default">

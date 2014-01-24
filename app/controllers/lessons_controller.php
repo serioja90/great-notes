@@ -3,13 +3,16 @@
     public function index(){
       $course = Course::find($this->params['course'])[0];
       if(isset($this->params['course']) && trim($this->params['course'])!="" && isset($course)){
-        $lessons = Lesson::find(
-          array(
-            'conditions' => 'course_code=$1',
-            'params' => array($this->params['course']),
-            'order' => 'date, lesson_start, classroom'
-          )
-        );
+        $lessons = Lesson::find(array(
+          'select' => 'l.*, coalesce(n.notes,0) AS notes',
+          'from'   => 'lessons AS l
+                       LEFT OUTER JOIN
+                       (SELECT lesson_id,COUNT(*) AS notes FROM notes GROUP BY lesson_id) AS n
+                       ON l.id=n.lesson_id',
+          'conditions' => 'course_code=$1',
+          'params' => array($this->params['course']),
+          'order' => 'date,lesson_start,lesson_end'
+        ));
         $this->render(array('locals' => get_defined_vars()));
       }else{
         push_error("Impossibile trovare il corso con il codice '".$this->params['course']."'.");

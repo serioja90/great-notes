@@ -23,15 +23,15 @@
     <label class="control-label col-sm-2">Lezione:</label>
     <div class="controls col-sm-10">
       <select id="lessons-list" name="lesson" class="form-control" required>
-        <? foreach ($lessons as $lesson) { ?>
-          <option value="<?= $lesson->id ?>"
+        <? foreach ($lessons as $item) { ?>
+          <option value="<?= $item->id ?>"
             <? if(isset($params['lesson'])){ ?>
-              <?= $params['lesson'] == (string)($lesson->id) ? 'selected' : '' ?>
+              <?= $params['lesson'] == (string)($item->id) ? 'selected' : '' ?>
             <? } else if (isset($note)){ ?>
-              <?= $note->lesson_id == (string)($lesson->id) ? 'selected' : '' ?>
+              <?= $note->lesson_id == (string)($item->id) ? 'selected' : '' ?>
             <? } ?>
           >
-            <?= date("Y-m-d, l",strtotime($lesson->date)) ?> (<?= $lesson->lesson_start ?> - <?= $lesson->lesson_end ?>)
+            <?= date("Y-m-d, l",strtotime($item->date)) ?> (<?= $item->lesson_start ?> - <?= $item->lesson_end ?>)
           </option>
         <? } ?>
       </select>
@@ -57,7 +57,7 @@
         selector:'#content',
         language: 'it',
         statusbar: true,
-        plugins : 'advlist autolink autosave charmap code fullscreen hr image link lists pagebreak print preview searchreplace table textcolor wordcount',
+        plugins : 'advlist autolink charmap code fullscreen hr image link lists pagebreak print preview searchreplace table textcolor wordcount',
         pagebreak_separator: "<!-- my page break -->",
         tools: "inserttable"
       });

@@ -7,9 +7,10 @@
                    JOIN lessons AS l ON n.lesson_id=l.id
                    JOIN courses AS c ON l.course_code=c.code
                    JOIN users AS u ON n.user_id=u.id",
-        'order' => 'n.created_at'
+        'order' => 'n.created_at desc, l.date, c.name, c.code'
       );
-      if(isset($this->params['lesson'])){
+      if(isset($this->params['lesson']) && trim($this->params['lesson'])!=''){
+        $lesson = Lesson::find($this->params['lesson'])[0];
         $find_conditions['conditions'] = 'lesson_id=$1';
         $find_conditions['params'] = array($this->params['lesson']);
       }
@@ -30,7 +31,11 @@
     }
 
     public function refresh_lessons(){
-      $lessons = Lesson::find(array('conditions' => 'course_code=$1', 'params' => array($this->params['course'])));
+      $lessons = Lesson::find(array(
+        'conditions' => 'course_code=$1',
+        'params' => array($this->params['course']),
+        'order' => 'date,lesson_start,lesson_end'
+      ));
       $this->render_partial(array('locals' => get_defined_vars()));
     }
 
@@ -39,13 +44,17 @@
         push_error("Accesso negato!");
         header("location: /notes/index");
       }else{
+        $course_code = $this->params['course'];
         $courses = Course::find(array('order' => 'name,code'));
         $lessons = [];
         if(count($courses) > 0){
+          if(!isset($course_code) || trim($course_code)==''){
+            $course_code = $courses[0]->code;
+          }
           $lessons = Lesson::find(
             array(
               'conditions' => 'course_code=$1',
-              'params' => array($courses[0]->code),
+              'params' => array($course_code),
               'order' => 'date,lesson_start,lesson_end'
             )
           );
@@ -76,9 +85,13 @@
         $note = Note::find($this->params['note'])[0];
         if(isset($note)){
           if(current_user()->id==$note->user_id || current_user()->is_admin()){
-            $courses = Course::find();
+            $courses = Course::find(array('order' => 'name,code'));
             $lesson = Lesson::find($note->lesson_id)[0];
-            $lessons = Lesson::find(array('conditions' => 'course_code=$1', 'params' => array($lesson->course_code)));
+            $lessons = Lesson::find(array(
+              'conditions' => 'course_code=$1',
+              'params' => array($lesson->course_code),
+              'order' => 'date,lesson_start,lesson_end'
+            ));
             $this->render(array('locals' => get_defined_vars()));
           }else{
             push_error("Non hai i permessi necessari per modificare questi appunti!");
@@ -103,9 +116,13 @@
               push_notice("Appunti aggiornati con successo!");
               header("location: /notes/show?note=".$this->params['note']);
             }else{
-              $courses = Course::find();
+              $courses = Course::find(array('order' => 'name,code'));
               $lesson = Lesson::find($note->lesson_id)[0];
-              $lessons = Lesson::find(array('conditions' => 'course_code=$1', 'params' => array($lesson->course_code)));
+              $lessons = Lesson::find(array(
+                'conditions' => 'course_code=$1',
+                'params' => array($lesson->course_code),
+                'order' => 'date,lesson_start,lesson_end'
+              ));
               $this->render(array('locals' => get_defined_vars(), 'action' => 'edit'));
             }
           }else{
