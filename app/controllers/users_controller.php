@@ -59,5 +59,16 @@
 				$this->render(array('locals' => get_defined_vars(), 'action' => 'sign_up'));
 			}
 		}
+
+		public function profile(){
+			if(!user_signed_in()){
+				$this->render(array('locals' => get_defined_vars(), 'action' => 'sign_up'));
+			}else{
+				$user = current_user();
+				$role = Role::find($user->role_id)[0];
+				$notes = Note::find(array('conditions' => 'user_id=$1', 'params' => array($user->id)));
+				$this->render(array('locals' => get_defined_vars(), 'action' => 'profile'));
+			}
+		}
 	}
 ?>
