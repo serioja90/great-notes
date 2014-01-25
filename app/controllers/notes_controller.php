@@ -30,6 +30,11 @@
       }
     }
 
+    public function search(){
+      $notes = Note::search($this->params['search_query']);
+      $this->render_partial(array('locals' => get_defined_vars(), 'action' => 'notes_list'));
+    }
+
     public function refresh_lessons(){
       $lessons = Lesson::find(array(
         'conditions' => 'course_code=$1',
@@ -44,12 +49,13 @@
         push_error("Accesso negato!");
         header("location: /notes/index");
       }else{
-        $course_code = $this->params['course'];
         $courses = Course::find(array('order' => 'name,code'));
         $lessons = [];
         if(count($courses) > 0){
-          if(!isset($course_code) || trim($course_code)==''){
+          if(!isset($this->params['course']) || trim($this->params['course'])==''){
             $course_code = $courses[0]->code;
+          }else{
+            $course_code = $this->params['course'];
           }
           $lessons = Lesson::find(
             array(

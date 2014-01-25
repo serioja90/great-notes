@@ -3,6 +3,22 @@
     protected $table_name = "notes";
     protected $primary_key = "id";
 
+    public static function search($search_query){
+      if(!isset($search_query) || trim($search_query)==''){
+        $notes = self::find(array(
+          'select' => 'n.*, l.date, l.classroom, c.code, c.name, u.username',
+          'from' => "notes AS n
+                     JOIN lessons AS l ON n.lesson_id=l.id
+                     JOIN courses AS c ON l.course_code=c.code
+                     JOIN users AS u ON n.user_id=u.id",
+          'order' => 'n.created_at desc, l.date, c.name, c.code'
+        ));
+      }else{
+        $notes = self::find_by_sql(array("SELECT * FROM search_notes($1);",$search_query));
+      }
+      return $notes;
+    }
+
     public static function add_note($params){
       if(self::validate($params)){
         $result = self::execute(

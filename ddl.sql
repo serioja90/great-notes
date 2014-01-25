@@ -49,6 +49,7 @@ CREATE TABLE notes(
 CREATE OR REPLACE FUNCTION search_notes(IN query_str text) 
   RETURNS TABLE(
             id int,
+            user_id int,
             content text,
             created_at timestamp,
             updated_at timestamp,
@@ -61,7 +62,7 @@ CREATE OR REPLACE FUNCTION search_notes(IN query_str text)
           ) AS $$
   BEGIN
     -- return a table with interest columns
-    RETURN QUERY  SELECT n.id, n.content, n.created_at, n.updated_at, l.date, l.classroom, c.code, c.name, u.username, s.score
+    RETURN QUERY  SELECT n.id, n.user_id, n.content, n.created_at, n.updated_at, l.date, l.classroom, c.code, c.name, u.username, s.score
                   FROM (
                         -- use to_tsvector, to_tsquery and ts_rank_cd functions to find
                         -- the lessons that match search parameters and to rank them according
