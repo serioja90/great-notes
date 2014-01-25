@@ -32,6 +32,7 @@
           <i class="fa fa-plus-circle"></i> Aggiungi Appunti
         </a>
       <? } ?>
+      &nbsp;
       <hr />
     </p>
     <div class="clearfix"></div>

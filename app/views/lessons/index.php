@@ -38,7 +38,7 @@
                 <a href="/notes/index?lesson=<?= $lesson->id ?>" class="btn btn-mini btn-default">
                   <i class="fa fa-clipboard fa-fw"></i> Appunti
                 </a>
-                <? if(user_signed_in()){ ?>
+                <? if(user_signed_in() && current_user()->is_admin()){ ?>
                   <a href="/lessons/edit?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default">
                     <i class="fa fa-edit fa-fw"></i> Modifica
                   </a>

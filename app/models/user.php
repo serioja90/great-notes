@@ -45,9 +45,9 @@
       }
       $user = self::find(array(
         'conditions' => 'username=$1 OR email=$2',
-        'params' => array($username,$password)
+        'params' => array($username,$email)
       ));
-      if(!empty($user)){
+      if(count($user) > 0){
         if($user[0]->username==$username){
           push_error("Lo username '".$username."' è già stato preso.");
           $valid = false;
