@@ -3,7 +3,7 @@
 	<form role="form" method="POST" action="/users/authenticate">
 		<div class="row login-form col-lg-4 col-lg-offset-4">
 			<fieldset>
-				<legend>Authenticazione</legend>
+				<legend>Autenticazione</legend>
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label class="control-label">Username o Email</label>

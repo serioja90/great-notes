@@ -54,7 +54,7 @@
     <footer>
       <div class="container">
         <blockquote>
-          <small>Designed, built and mantained by <strong><span class="text-info">Groza Sergiu</span></strong>.</small>
+          <small>Designed, built and maintained by <strong><span class="text-info">Groza Sergiu</span></strong>.</small>
           <small>
             Powered by <a href="http://lesscss.org/" target="_blank">Less</a>,
             <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>,
