@@ -53,7 +53,7 @@
           $valid = false;
         }
         if($user[0]->email==$email){
-          push_error("L'email '".$email."' è già stato usato.");
+          push_error("L'email '".$email."' è già stata usata.");
           $valid = false;
         }
       }

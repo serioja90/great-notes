@@ -3,10 +3,10 @@
     <h2>Elenco Lezioni <small><span class="text-info">'<?= $course->name ?>'</span></small></h2>
   </div>
   <? require_once('app/views/shared/_notifications.php') ?>
+  <a href="/courses/index" class="btn btn-sm btn-default">
+    <i class="fa fa-arrow-circle-left fa-fw"></i> Torna ai Corsi
+  </a>
   <? if(user_signed_in()){ ?>
-    <a href="/courses/index" class="btn btn-sm btn-default">
-      <i class="fa fa-arrow-circle-left fa-fw"></i> Torna ai Corsi
-    </a>
     <a href="/lessons/new_lesson?course=<?= $course->code ?>" class="btn btn-sm btn-primary">
       <i class="fa fa-plus-circle fa-fw"></i> Aggiungi Lezione
     </a>
