@@ -75,7 +75,7 @@
       $classname = get_called_class();
       $model = new $classname();
       if(!isset($params)){
-        $params = array();  
+        $params = array();
       }
       return $model->getConnection()->execute($sql,$params);
     }

@@ -1,5 +1,5 @@
 <?php
-  
+
   class ApplicationController{
     protected $params = null;
     protected $layout = "application";
@@ -42,7 +42,7 @@
         if(isset($args['locals'])){
           extract($args['locals']);
         }
-      } 
+      }
       if(file_exists('app/views/'.$controller.'/_'.$action.'.php')){
         require_once('app/views/'.$controller.'/_'.$action.'.php');
       }else{

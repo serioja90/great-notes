@@ -27,7 +27,7 @@
         throw new EmptyDatabaseNameException();
       }
 
-      // The database configurations are ok, so we can proceed with 
+      // The database configurations are ok, so we can proceed with
       // connecting to the database by using the require_onced database adapter.
       // For now only the postgresql adapter can be used.
       if($config['adapter']=='postgresql'){

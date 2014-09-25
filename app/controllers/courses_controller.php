@@ -4,12 +4,12 @@
       $courses = Course::find(
         array(
           'select' => 'c.code, c.name, c.professor, COALESCE(l.lessons,0) AS lessons',
-          'from' => 'courses AS c 
-                      LEFT OUTER JOIN 
-                    (SELECT course_code, COUNT(*) AS lessons 
+          'from' => 'courses AS c
+                      LEFT OUTER JOIN
+                    (SELECT course_code, COUNT(*) AS lessons
                       FROM lessons AS l
                       GROUP BY course_code
-                    ) AS l 
+                    ) AS l
                       ON c.code=l.course_code',
           'group' => 'c.code, c.name, c.professor, l.lessons',
           'order' => 'c.name, c.code'
@@ -126,4 +126,4 @@
       header("location: /courses/index?id=".$this->params['course_id']);
     }
   }
-?>  
+?>
