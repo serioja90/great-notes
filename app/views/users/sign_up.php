@@ -7,19 +7,19 @@
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label class="control-label">Username</label>
-						<input 	type="text" 
-								class="form-control" 
-								name="username" 
+						<input 	type="text"
+								class="form-control"
+								name="username"
 								placeholder="Username"
 								value="<?= isset($username)?$username:"" ?>"
 								required>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Email</label>
-						<input 	type="email" 
-								class="form-control" 
-								name="email" 
-								placeholder="Email" 
+						<input 	type="email"
+								class="form-control"
+								name="email"
+								placeholder="Email"
 								value="<?= isset($email)?$email:"" ?>"
 								required>
 					</div>

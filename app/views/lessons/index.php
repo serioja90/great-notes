@@ -2,16 +2,16 @@
   <div class="page-header">
     <h2>Elenco Lezioni <small><span class="text-info">'<?= $course->name ?>'</span></small></h2>
   </div>
-  <? require_once('app/views/shared/_notifications.php') ?>
+  <?php require_once('app/views/shared/_notifications.php') ?>
   <a href="/courses/index" class="btn btn-sm btn-default">
     <i class="fa fa-arrow-circle-left fa-fw"></i> Torna ai Corsi
   </a>
-  <? if(user_signed_in()){ ?>
+  <?php if(user_signed_in()){ ?>
     <a href="/lessons/new_lesson?course=<?= $course->code ?>" class="btn btn-sm btn-primary">
       <i class="fa fa-plus-circle fa-fw"></i> Aggiungi Lezione
     </a>
-  <? } ?>
-  <? if(count($lessons) > 0){ ?>
+  <?php } ?>
+  <?php if(count($lessons) > 0){ ?>
     <table class="table table-bordered table-striped table-hover table-condensed">
       <thead>
         <tr>
@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-        <? foreach($lessons as $lesson){ ?>
+        <?php foreach($lessons as $lesson){ ?>
           <tr>
             <td><?= $lesson->id ?></td>
             <td><?= date("Y-m-d, l",strtotime($lesson->date)) ?></td>
@@ -38,7 +38,7 @@
                 <a href="/notes/index?lesson=<?= $lesson->id ?>" class="btn btn-mini btn-default">
                   <i class="fa fa-clipboard fa-fw"></i> Appunti
                 </a>
-                <? if(user_signed_in() && current_user()->is_admin()){ ?>
+                <?php if(user_signed_in() && current_user()->is_admin()){ ?>
                   <a href="/lessons/edit?course=<?= $lesson->course_code ?>&id=<?= $lesson->id ?>" class="btn btn-mini btn-default">
                     <i class="fa fa-edit fa-fw"></i> Modifica
                   </a>
@@ -46,14 +46,14 @@
                      onclick="return confirm('Sei sicuro di voler cancellare la lezione selezionata?');">
                     <i class="fa fa-trash-o fa-fw"></i> Cancella
                   </a>
-                <? } ?>
+                <?php } ?>
               </div>
             </td>
           </tr>
-        <? } ?>
+        <?php } ?>
       </tbody>
     </table>
-  <? }else{ ?>
+  <?php }else{ ?>
     <h3><strong><span class="text-danger">Nessuna lezione trovata per il corso '<?= $course->name ?>'.</span></strong></h3>
-  <? } ?>
+  <?php } ?>
 </div>

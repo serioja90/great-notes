@@ -32,24 +32,22 @@
             <li class="<?= (controller()=='users'?'active':'') ?>">
               <a href="/users/profile"> <span class="fa fa-user fa-fw"></span> Profilo</a>
             </li>
-          <? } ?>
+          <?php } ?>
         </ul>
         <?php if(user_signed_in()){ ?>
           <div class="navbar-right">
             <div class="navbar-text">Benvenuto, <strong><?= current_user()->username ?></strong></div>
             <a  class="btn btn-default btn-sm navbar-btn" href="/users/sign_out">Esci</a>
           </div>
-        <? }else{ ?>
+        <?php }else{ ?>
           <div class="navbar-right">
             <a class="btn btn-primary btn-sm navbar-btn" href="/users/sign_up">Registrazione</a>
             <a class="btn btn-default btn-sm navbar-btn" href="/users/sign_in">Accedi</a>
           </div>
-        <? } ?>
+        <?php } ?>
       </div>
     </div>
-    <?php
-      echo $output;
-    ?>
+    <?php echo $output; ?>
     <hr>
     <footer>
       <div class="container">

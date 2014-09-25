@@ -1,9 +1,9 @@
-<? $params = array_merge($_GET,$_POST); ?>
+<?php $params = array_merge($_GET,$_POST); ?>
 <form class="form-horizontal" role="form" action="/courses/<?= $action ?>" method="POST">
   <div class="form-group">
     <label class="col-sm-3 control-label">Codice Corso:</label>
     <div class="col-sm-4">
-      <input type="text" 
+      <input type="text"
              class="form-control input-sm"
              name="code"
              placeholder="Codice Corso"

@@ -15,23 +15,23 @@
       </div>
     </form>
     <p>
-      <? if(isset($lesson)){ ?>
+      <?php if(isset($lesson)){ ?>
         <a href="/lessons/index?course=<?= $lesson->course_code ?>" class="btn btn-sm btn-default">
           <i class="fa fa-arrow-circle-left fa-fw"></i> Torna alle Lezioni
         </a>
-      <? } ?>
+      <?php } ?>
       <a href=""></a>
-      <? if(user_signed_in()){ ?>
-        <? 
+      <?php if(user_signed_in()){ ?>
+        <?php
           $new_note_params = "";
           if(isset($lesson)){
             $new_note_params = "lesson=".$lesson->id."&course=".$lesson->course_code;
-          } 
+          }
         ?>
         <a href="/notes/new_note?<?= $new_note_params ?>" class="btn btn-sm btn-primary">
           <i class="fa fa-plus-circle"></i> Aggiungi Appunti
         </a>
-      <? } ?>
+      <?php } ?>
       &nbsp;
       <hr />
     </p>

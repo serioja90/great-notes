@@ -1,11 +1,11 @@
-<? $params = array_merge($_GET,$_POST); ?>
+<?php $params = array_merge($_GET,$_POST); ?>
 <form class="form-horizontal" role="form" action="/lessons/<?= $action ?>" method="POST">
-  <? if(isset($lesson)){ ?>
+  <?php if(isset($lesson)){ ?>
     <input type="hidden" name="id" value="<?= $lesson->id ?>" />
-  <? } ?>
+  <?php } ?>
   <input type="hidden"
          name="course"
-         value="<?= (isset($params['course']) ? $params['course'] : (isset($lesson) ? $lesson->course_code : '')) ?>" 
+         value="<?= (isset($params['course']) ? $params['course'] : (isset($lesson) ? $lesson->course_code : '')) ?>"
          />
   <div class="form-group">
     <label class="col-sm-3 control-label">Data Lezione:</label>

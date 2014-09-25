@@ -2,8 +2,8 @@
   <div class="page-header">
     <h2>Modifica Corso <small><?= $course->name ?></small></h2>
   </div>
-  <? require_once('app/views/shared/_notifications.php') ?>
-  <?
+  <?php require_once('app/views/shared/_notifications.php') ?>
+  <?php
     $action = 'update';
     include("_form.php");
   ?>

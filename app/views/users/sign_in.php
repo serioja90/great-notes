@@ -7,10 +7,10 @@
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label class="control-label">Username o Email</label>
-						<input 	type="text" 
-								class="form-control" 
-								name="login" 
-								placeholder="Username o Email" 
+						<input 	type="text"
+								class="form-control"
+								name="login"
+								placeholder="Username o Email"
 								value="<?= isset($login)?$login:"" ?>"
 								tabindex="1"
 								required>

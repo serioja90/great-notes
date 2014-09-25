@@ -1,21 +1,21 @@
-<? $params = array_merge($_GET,$_POST); ?>
+<?php $params = array_merge($_GET,$_POST); ?>
 <form class="form-horizontal" role="form" action="/notes/<?= $action ?>" method="POST">
   <input type="hidden" name="note" value="<?= isset($note) ? $note->id : '' ?>" />
   <div class="form-group">
     <label class="control-label col-sm-2">Corso:</label>
     <div class="controls col-sm-10">
       <select id="courses-list" name="course" class="form-control" required>
-        <? foreach ($courses as $course) { ?>
+        <?php foreach ($courses as $course) { ?>
           <option value="<?= $course->code ?>" 
-            <? if(isset($params['course'])){ ?>
+            <?php if(isset($params['course'])){ ?>
               <?= $params['course'] == (string)($course->code) ? 'selected' : '' ?>
-            <? } else if (isset($lesson)){ ?>
+            <?php } else if (isset($lesson)){ ?>
               <?= $lesson->course_code == (string)($course->code) ? 'selected' : '' ?>
-            <? } ?>
+            <?php } ?>
           >
             <?= $course->name ?> (<?= $course->code ?>)
           </option>
-        <? } ?>
+        <?php } ?>
       </select>
     </div>
   </div>
@@ -23,21 +23,21 @@
     <label class="control-label col-sm-2">Lezione:</label>
     <div class="controls col-sm-10">
       <select id="lessons-list" name="lesson" class="form-control" required>
-        <? foreach ($lessons as $item) { ?>
+        <?php foreach ($lessons as $item) { ?>
           <option value="<?= $item->id ?>"
-            <? if(isset($params['lesson'])){ ?>
+            <?php if(isset($params['lesson'])){ ?>
               <?= $params['lesson'] == (string)($item->id) ? 'selected' : '' ?>
-            <? } else if (isset($note)){ ?>
+            <?php } else if (isset($note)){ ?>
               <?= $note->lesson_id == (string)($item->id) ? 'selected' : '' ?>
-            <? } ?>
+            <?php } ?>
           >
             <?= date("Y-m-d, l",strtotime($item->date)) ?> (<?= $item->lesson_start ?> - <?= $item->lesson_end ?>)
           </option>
-        <? } ?>
+        <?php } ?>
       </select>
     </div>
   </div>
-  <? $content = (isset($params['content']) ? $params['content'] : (isset($note) ? $note->content : '')) ?>
+  <?php $content = (isset($params['content']) ? $params['content'] : (isset($note) ? $note->content : '')) ?>
   <textarea id="content" name="content" rows="15"><?= $content ?></textarea>
   <div class="form-actions">
     <hr>
