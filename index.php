@@ -22,10 +22,9 @@
   foreach(glob("lib/*.php") as $file){
       require_once($file);
   }
-     
-     foreach (glob("app/helpers/*.php") as $file) {
+  foreach (glob("app/helpers/*.php") as $file) {
       require_once($file);
-     }
+  }
   foreach(glob("app/controllers/*.php") as $file){
       require_once($file);
   }
